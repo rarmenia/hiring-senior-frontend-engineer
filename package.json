@@ -10,11 +10,16 @@
         "format": "yarn prettier --write .",
         "build-css": "postcss ./styles/globals.css -o ./storybook-static/app.css",
         "generate-graphql": "graphql-codegen --config codegen.yml",
-        "generate-tailwind": "tailwindcss-classnames -o lib/tailwind-classnames.tsx -x lib/tailwind-custom-classnames.ts"
+        "generate-tailwind": "tailwindcss-classnames -o lib/tailwind-classnames.ts -x lib/tailwind-custom-classnames.ts"
     },
     "dependencies": {
         "@apollo/client": "^3.4.16",
+        "@headlessui/react": "^1.4.3",
+        "@heroicons/react": "^1.0.5",
         "@tailwindcss/forms": "^0.3.4",
+        "@visx/group": "^2.1.0",
+        "@visx/shape": "^2.4.0",
+        "@visx/text": "^2.3.0",
         "axios": "^0.22.0",
         "clsx": "^1.1.1",
         "deepmerge": "4.2.2",
@@ -23,6 +28,7 @@
         "graphql-tag": "^2.12.5",
         "lodash": "4.17.21",
         "next": "12.0.1",
+        "next-themes": "^0.0.15",
         "prop-types": "^15.7.2",
         "react": "17.0.2",
         "react-dom": "17.0.2",
