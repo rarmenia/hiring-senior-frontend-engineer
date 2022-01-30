@@ -6,7 +6,7 @@ import {classnames} from '../../../lib/tailwind-classnames';
 
 interface Props {
   icon: React.ReactNode;
-  statValue: number;
+  statValue: number | string;
   unit?: string;
   statText: string;
 }
@@ -14,11 +14,11 @@ interface Props {
 export default function StatCard(props: Props): JSX.Element {
   return (
     <Card bg={theme.bgGlance}>
-      <div className={classnames('w-full', 'flex', 'flex-row', 'items-center', 'gap-2.5', 'p-4')}>
-        <div className={classnames('self-start')}>{props.icon}</div>
-        <div className={classnames('flex', 'flex-col')}>
+      <div className={classnames('w-full', 'flex', 'flex-row', 'items-center', 'gap-3', 'p-4', 'text-xl', 'font-bold', 'leading-7')}>
+        <div className={classnames('self-start', 'mt-0.5')}>{props.icon}</div>
+        <div className={classnames('flex', 'flex-col', 'gap-0.5')}>
           <div>{props.statValue}{props.unit ? ` ${props.unit}` : ''}</div>
-          <div>{props.statText}</div>
+          <div className={classnames('whitespace-nowrap', 'text-sm', 'leading-5', 'font-medium', theme.statInfoText)}>{props.statText}</div>
         </div>
         <div className={classnames('flex-grow')} />
         <div>
