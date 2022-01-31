@@ -16,14 +16,23 @@ class DonutChartConfig {
   constructor(
     public width: number,
     public height: number,
+    public margin: number,
     public donutThickness: number,
     public padAngle: number,
     public cornerRadius: number,
   ) {
   }
 
+  get innerWidth(): number {
+    return this.width - (this.margin * 2);
+  }
+
+  get innerHeight(): number {
+    return this.height - (this.margin * 2)
+  }
+
   get radius(): number {
-    return (Math.min(this.width, this.height) / 2);
+    return (Math.min(this.innerWidth, this.innerHeight) / 2);
   }
 
   get innerRadius(): number {
@@ -31,11 +40,11 @@ class DonutChartConfig {
   }
 
   get centerX(): number {
-    return this.width / 2;
+    return this.innerWidth / 2;
   }
 
   get centerY(): number {
-    return this.height / 2;
+    return this.innerHeight / 2;
   }
 }
 
@@ -58,14 +67,14 @@ export default function NationalityChart(props: Props): JSX.Element {
     tailwindColors.yellow['400']
   ];
 
-  const chartConfig = new DonutChartConfig(150, 150, 5, 0.025, 5);
+  const chartConfig = new DonutChartConfig(200, 200, 20, 5, 0.025, 5);
 
   return (
     <div className={classnames('flex', 'flex-col', 'md:flex-row', 'p-4', 'items-center', 'justify-around', 'w-full')}>
-      {(transformedData && transformedData.length > 0) && <>
+      {(transformedData && transformedData.length > 0) ? <>
           <div className={classnames(theme.text)}>
-              <svg width={chartConfig.width + 10} height={chartConfig.height + 10}>
-                  <Group top={chartConfig.centerX} left={chartConfig.centerY}>
+              <svg width={chartConfig.width} height={chartConfig.height}>
+                  <Group top={chartConfig.centerY + chartConfig.margin} left={chartConfig.centerX + chartConfig.margin}>
                       <Pie
                           data={transformedData}
                           pieValue={(d) => d.count}
@@ -80,8 +89,8 @@ export default function NationalityChart(props: Props): JSX.Element {
                             <path
                               d={pie.path(arc) ?? undefined}
                               fill={colors[arc.data.index % colors.length]}
-                              className={classnames('transition-all', 'ease-in', 'duration-75')}
-                              style={active?.nationality === arc.data.nationality ? {filter: `drop-shadow(0px 0px 1px ${colors[arc.data.index % colors.length]})`} : {}}
+                              className={classnames('transition-all', 'ease-in', 'duration-75', 'cursor-pointer')}
+                              style={active?.nationality === arc.data.nationality ? {filter: `drop-shadow(0px 0px 2px ${colors[arc.data.index % colors.length]})`} : {}}
                               onClick={() => setActive((cur) => cur?.nationality === arc.data.nationality ? undefined : ({nationality: arc.data.nationality, count: arc.data.count}))}
                             />
                           </g>
@@ -107,7 +116,8 @@ export default function NationalityChart(props: Props): JSX.Element {
                   {
                     transformedData.sort((a, b) => b.count - a.count).map((dataRow, currIndex) => (
                       <tr key={dataRow.index}
-                          className={classnames('py-1.5', 'flex', 'flex-row', 'items-center', 'text-sm', 'font-medium', {'border-b-2': currIndex + 1 < transformedData.length}, theme.chartLegendSeparator)}>
+                          onClick={() => setActive((cur) => cur?.nationality === dataRow.nationality ? undefined : ({nationality: dataRow.nationality, count: dataRow.count}))}
+                          className={classnames('py-1.5', 'flex', 'flex-row', 'items-center', 'text-sm', 'font-medium', {'border-b-2': currIndex + 1 < transformedData.length}, theme.chartLegendSeparator, 'cursor-pointer')}>
                         <td className={classnames('w-2/3', 'inline-flex', 'items-center', theme.chartLegendKey)}>
                           <div className={classnames('block', 'rounded-full', 'mt-0.5')} style={{
                             backgroundColor: colors[dataRow.index % colors.length],
@@ -123,7 +133,7 @@ export default function NationalityChart(props: Props): JSX.Element {
                   </tbody>
               </table>
           </div>
-      </>}
+      </> : transformedData.length === 0 ? (<div>No Payloads</div>) : (<div>loading</div>)}
     </div>
   );
 

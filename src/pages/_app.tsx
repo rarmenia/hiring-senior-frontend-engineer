@@ -4,6 +4,7 @@ import {ThemeProvider, useTheme} from 'next-themes';
 import {AppToolbar} from '../components/app/AppToolbar';
 import {ApolloProvider} from '@apollo/client';
 import client from '../../apollo';
+import {wrapper} from '../redux/store';
 
 function MyApp({Component, pageProps}: AppProps) {
 
@@ -21,4 +22,5 @@ function MyApp({Component, pageProps}: AppProps) {
   </>);
 }
 
-export default MyApp;
+// noinspection JSUnusedGlobalSymbols
+export default wrapper.withRedux(MyApp);

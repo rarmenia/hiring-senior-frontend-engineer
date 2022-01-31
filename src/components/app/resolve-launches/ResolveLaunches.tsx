@@ -1,5 +1,7 @@
 import GET_LAUNCHES, {Launch, Launches, LaunchesInput} from '../../../../apollo/queries/GET_LAUNCHES';
 import ApolloResolver from '../../generics/ApolloResolver';
+import {useSelector} from 'react-redux';
+import {AppState} from '../../../redux/store';
 
 interface Props {
   queryVars: LaunchesInput,
@@ -8,8 +10,10 @@ interface Props {
 
 export default function ResolveLaunches(props: Props) {
 
+  const launchSite = useSelector((state:AppState) => state.launchSite.launchSite)
+
   return (
-    <ApolloResolver<Launches, LaunchesInput> query={GET_LAUNCHES} vars={props.queryVars}>
+    <ApolloResolver<Launches, LaunchesInput> query={GET_LAUNCHES} vars={{...props.queryVars, site_id: launchSite}}>
       {({data, loading}) => (<>
         {props.children({data, loading})}
       </>)}

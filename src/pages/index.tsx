@@ -5,6 +5,7 @@ import {DashboardCharts} from '../components/app/DashboardCharts';
 import DashboardPayloadStats from '../components/app/DashboardPayloadStats';
 import ResolvePayloadsFromLaunches from '../components/app/resolve-launches/ResolveLaunchesWithMissionPayloads';
 import {Payload} from '../../apollo/queries/GET_PAYLOADS';
+import DashboardTable from '../components/app/DashboardTable';
 
 
 
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className={classnames('mt-4')}>
+    <div className={classnames('my-4')}>
       <ResolvePayloadsFromLaunches launchesVars={{}}>
         {({data, loading}) => (
           <DashboardPayloadStats loading={loading} data={data?.launches.reduce((acc: Payload[], launch) =>
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
         )}
       </ResolvePayloadsFromLaunches>
       <DashboardCharts />
+      <DashboardTable />
     </div>
   )
 }

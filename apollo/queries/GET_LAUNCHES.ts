@@ -19,6 +19,7 @@ export interface Launch {
   id: string;
   launch_site: LaunchSite;
   mission_id: string[];
+  mission_name: string;
   launch_success: boolean;
   launch_date_utc: string;
   rocket: Rocket;
@@ -43,7 +44,8 @@ const GET_LAUNCHES = gql`
               site_name
               site_name_long
           },
-          mission_id
+          mission_id,
+          mission_name,
           launch_success,
           launch_date_utc,
           rocket {

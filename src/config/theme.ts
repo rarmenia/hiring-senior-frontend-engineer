@@ -15,6 +15,7 @@ const theme = {
   chartLegendKey: classnames('text-black', 'dark:text-dust-500'),
   chartLegendValue: classnames('text-dust-500', 'dark:text-dust-500'),
   chartLegendSeparator: classnames('border-ghost', 'dark:border-graphite'),
+  tableHeading: classnames('text-gray-500', 'dark:text-white'),
   cogColorInactive: classnames('text-blue-500', 'dark:text-white'),
   cogBgInactive: classnames('bg-white', 'dark:bg-graphite-50'),
   cogColorActive: classnames('text-white'),
