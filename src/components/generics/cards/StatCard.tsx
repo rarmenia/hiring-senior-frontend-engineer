@@ -1,8 +1,8 @@
 import Card from './Card';
-import theme from '../../config/theme';
+import theme from '../../../config/theme';
 import React from 'react';
 import {ChevronRightIcon} from '@heroicons/react/solid';
-import {classnames} from '../../../lib/tailwind-classnames';
+import {classnames} from '../../../../lib/tailwind-classnames';
 
 interface Props {
   icon: React.ReactNode;

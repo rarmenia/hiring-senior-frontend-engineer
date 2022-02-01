@@ -1,5 +1,5 @@
-import {TBackgroundColor, TBorderRadius, TTailwindString} from '../../../lib/tailwind-classnames';
-import theme from '../../config/theme';
+import {TBackgroundColor, TBorderRadius, TTailwindString} from '../../../../lib/tailwind-classnames';
+import theme from '../../../config/theme';
 import {classnames} from 'tailwindcss-classnames';
 import React from 'react';
 

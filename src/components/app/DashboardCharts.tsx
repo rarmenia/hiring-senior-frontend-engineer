@@ -1,5 +1,5 @@
 import {classnames} from '../../../lib/tailwind-classnames';
-import ChartCard from '../generics/ChartCard';
+import ChartCard from '../generics/cards/ChartCard';
 import React from 'react';
 import NationalityChart from './charts/NationalityChart';
 import ResolveLaunchesWithMissionPayloads, {getPayloads} from './resolve-launches/ResolveLaunchesWithMissionPayloads';

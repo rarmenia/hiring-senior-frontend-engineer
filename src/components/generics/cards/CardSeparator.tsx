@@ -1,5 +1,5 @@
-import {classnames, TPadding, TTailwindString} from '../../../lib/tailwind-classnames';
-import theme from '../../config/theme';
+import {classnames, TPadding, TTailwindString} from '../../../../lib/tailwind-classnames';
+import theme from '../../../config/theme';
 
 interface Props {
   color?: TTailwindString;

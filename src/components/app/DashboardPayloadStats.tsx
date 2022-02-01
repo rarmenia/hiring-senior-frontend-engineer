@@ -1,4 +1,4 @@
-import StatCard from '../generics/StatCard';
+import StatCard from '../generics/cards/StatCard';
 import {ArchiveIcon, ScaleIcon, UserCircleIcon} from '@heroicons/react/outline';
 import {classnames} from '../../../lib/tailwind-classnames';
 import {Payload} from '../../../apollo/queries/GET_PAYLOADS';
