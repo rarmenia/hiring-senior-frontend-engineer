@@ -1,3 +1,5 @@
+import {ComparisonBarChart} from '../../generics/charts/ComparisonBarChart';
+
 interface Props {
   missions: {
     id: string;
@@ -5,12 +7,25 @@ interface Props {
   }[];
 }
 
-export default function TopMissionsChart(props:  Props): JSX.Element {
+export default function TopMissionsChart(props: Props): JSX.Element {
+
+  const topCompare = (props?.missions[0]?.mass ?? 0) * 1.1;
 
   return (
-    <div>
-      top missions chart
-      {JSON.stringify(props.missions, null, 4)}
+    <div className={'h-full'}>
+      <ComparisonBarChart
+        comparisonData={
+          props.missions.map((mission, index) => ({
+            key: index,
+            value: mission.mass,
+            percent: (mission.mass / topCompare) * 100,
+            label: mission.id
+          }))
+        }
+        labelHeader={'Mission'}
+        valueHeader={'Payload Mass'}
+        unit={'kg'}
+      />
     </div>
   );
 

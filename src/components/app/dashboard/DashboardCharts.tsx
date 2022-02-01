@@ -33,7 +33,7 @@ export function DashboardCharts(): JSX.Element {
               </>
           </ChartCard>
           <ChartCard header={'Top 5 Missions'}>
-           <>
+           <div className={classnames('flex-col', 'h-full', 'items-center', 'justify-center', 'px-4', 'my-auto')}>
             {loading ? (
               <div className={classnames(theme.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
                 <div className={classnames('w-20', 'h-20')}>
@@ -41,15 +41,17 @@ export function DashboardCharts(): JSX.Element {
                 </div>
               </div>
             ) : (
-              <TopMissionsChart missions={
-                (data ?? [])
-                  .sort((a, b) => (b.payload_mass_kg ?? 0) - (a.payload_mass_kg ?? 0))
-                  .filter((obj, pos, arr) => arr.map(mapObj => mapObj.id).indexOf(obj.id) === pos)
-                  .map(payload => ({id: payload.id, mass: payload.payload_mass_kg ?? 0}))
-                  .slice(0, 5)
-              }/>
+              <div className={'h-full'}>
+                <TopMissionsChart missions={
+                  (data ?? [])
+                    .sort((a, b) => (b.payload_mass_kg ?? 0) - (a.payload_mass_kg ?? 0))
+                    .filter((obj, pos, arr) => arr.map(mapObj => mapObj.id).indexOf(obj.id) === pos)
+                    .map(payload => ({id: payload.id, mass: payload.payload_mass_kg ?? 0}))
+                    .slice(0, 5)
+                }/>
+              </div>
             )}
-           </>
+           </div>
           </ChartCard>
         </>)
         }

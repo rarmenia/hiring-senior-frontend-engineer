@@ -21,10 +21,20 @@ const theme = {
   cogBgInactive: classnames('bg-white', 'dark:bg-graphite-50'),
   cogColorActive: classnames('text-white'),
   cogBgActive: classnames('bg-blue-500'),
-  searchAreaBg: classnames('bg-gray-100', 'dark:bg-graphite-500'),
+  searchArea: classnames('bg-gray-100', 'dark:bg-graphite-500'),
   searchAreaText: classnames('text-gray-400', 'dark:text-dust-500'),
   siteSelectBg: classnames('bg-white', 'dark:bg-graphite-400'),
   siteSelectText: classnames('text-blue-500', 'dark:text-white'),
+  charts: {
+    barComparison: {
+      graphMain: classnames('bg-black', 'dark:bg-gray-300'),
+      graphPad: classnames('bg-gray-100', 'dark:bg-graphite-200'),
+      legend: classnames('text-gray-500', 'dark:text-white'),
+      label: classnames('text-black', 'dark:text-dust'),
+      value: classnames('text-gray-500', 'dark:text-dust'),
+      tableSeparator: classnames('border-ghost', 'dark:border-graphite'),
+    },
+  }
 }
 
 export default theme;
