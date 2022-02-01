@@ -1,4 +1,4 @@
-import {TBackgroundColor, TBorderRadius, TTailwindString} from '../../../../lib/tailwind-classnames';
+import {TTailwindString} from '../../../../lib/tailwind-classnames';
 import theme from '../../../config/theme';
 import {classnames} from 'tailwindcss-classnames';
 import React from 'react';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function Card(props: Props): JSX.Element {
-  const bgClasses: TTailwindString = props.bg ?? theme.bgContent;
+  const bgClasses: TTailwindString = props.bg ?? theme.cards.main.bg;
   const radiusClasses: TTailwindString = props.radius ?? classnames('rounded-xl');
 
   return (

@@ -14,35 +14,37 @@ export function DashboardCharts(): JSX.Element {
     <div className={classnames('grid', 'grid-cols-1', 'lg:grid-cols-2', 'gap-5', 'mt-5')}>
       <ResolvePayloadsFromLaunches launchesVars={{}}>
         {({data, loading}) => (<>
-          <ChartCard header={'Payload Count By Nationality'}>
+          <ChartCard header={'Payload Count By Nationality'} loading={loading}>
             <>
               {loading ? (
-                <div className={classnames(theme.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
+                <div
+                  className={classnames(theme.main.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
                   <div className={classnames('w-20', 'h-20')}>
                     <LoadingSpinner/>
                   </div>
                 </div>
               ) : (
-                  <NationalityChart nationalityData={
-                    (data ?? []).map(payload => payload.nationality).reduce((acc, curr) => ((curr ? ({
-                      ...acc,
-                      [`${curr}`]: (acc[curr] ?? 0) + 1
-                    }) : {...acc})), {} as { [key: string]: number })
-                  } />
-                )}
-              </>
+                <NationalityChart nationalityData={
+                  (data ?? []).map(payload => payload.nationality).reduce((acc, curr) => ((curr ? ({
+                    ...acc,
+                    [`${curr}`]: (acc[curr] ?? 0) + 1
+                  }) : {...acc})), {} as { [key: string]: number })
+                }/>
+              )}
+            </>
           </ChartCard>
-          <ChartCard header={'Top 5 Missions'}>
-           <div className={classnames('flex-col', 'h-full', 'items-center', 'justify-center', 'px-4', 'my-auto')}>
-            {loading ? (
-              <div className={classnames(theme.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
-                <div className={classnames('w-20', 'h-20')}>
-                  <LoadingSpinner />
+          <ChartCard header={'Top 5 Missions'} loading={loading}>
+            <div className={classnames('flex-col', 'h-full', 'items-center', 'justify-center', 'px-4', 'my-auto')}>
+              {loading ? (
+                <div
+                  className={classnames(theme.main.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
+                  <div className={classnames('w-20', 'h-20')}>
+                    <LoadingSpinner/>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className={'h-full'}>
-                <TopMissionsChart missions={
+              ) : (
+                <div className={'h-full'}>
+                  <TopMissionsChart missions={
                   (data ?? [])
                     .sort((a, b) => (b.payload_mass_kg ?? 0) - (a.payload_mass_kg ?? 0))
                     .filter((obj, pos, arr) => arr.map(mapObj => mapObj.id).indexOf(obj.id) === pos)

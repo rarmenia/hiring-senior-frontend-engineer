@@ -6,14 +6,15 @@ import {classnames} from '../../../../lib/tailwind-classnames';
 interface Props {
   header: string;
   hintText?: string;
-  children: React.ReactNode
+  loading?: boolean;
+  children: React.ReactNode;
 }
 
 export default function ChartCard(props: Props): JSX.Element {
   return (
-    <Card>
+    <Card animation={props.loading ? classnames('animate-pulse') : undefined}>
       <div className={classnames('text-xl', 'px-4', 'py-4', 'font-bold', 'leading-8')}>{props.header}</div>
-      <CardSeparator />
+      <CardSeparator/>
       <>
         {props.children}
       </>

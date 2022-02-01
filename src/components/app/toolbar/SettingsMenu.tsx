@@ -13,9 +13,9 @@ export default function SettingsMenu(): JSX.Element {
           {({open}) => {
             return (
               <div
-                className={classnames('p-2', 'rounded-full', {[theme.cogBgInactive]: !open}, {[theme.cogBgActive]: open})}>
+                className={classnames('p-2', 'rounded-full', {[theme.settings.button.bgInactive]: !open}, {[theme.settings.button.bgActive]: open})}>
                 <CogIcon
-                  className={classnames('h-5', {[theme.cogColorInactive]: !open}, {[theme.cogColorActive]: open})}/>
+                  className={classnames('h-5', {[theme.settings.button.iconInactive]: !open}, {[theme.settings.button.iconActive]: open})}/>
               </div>
             );
           }}
@@ -31,7 +31,7 @@ export default function SettingsMenu(): JSX.Element {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items
-          className={classnames('absolute', 'right-0', 'w-60', 'origin-top-right', 'rounded-md', 'shadow-lg', theme.bgSettingsMenu)}>
+          className={classnames('absolute', 'right-0', 'w-60', 'origin-top-right', 'rounded-md', 'shadow-lg', theme.settings.menu.bg)}>
           <Menu.Item>
             {() => (
               <MenuItemThemeToggle/>

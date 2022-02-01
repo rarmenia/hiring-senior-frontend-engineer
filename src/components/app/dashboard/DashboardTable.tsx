@@ -98,15 +98,15 @@ export default function DashboardTable(): JSX.Element {
         <div className={classnames('flex', 'flex-col')}>
           <div className={classnames('p-4', 'w-full')}>
             <div
-              className={classnames(theme.searchAreaBg, theme.searchAreaText, 'w-full', 'p-4', 'flex', 'flex-row', 'items-center', 'rounded-md')}>
+              className={classnames(theme.inputs.missionSearch.bg, theme.inputs.missionSearch.text, 'w-full', 'p-4', 'flex', 'flex-row', 'items-center', 'rounded-md')}>
               <div className={classnames('mt-0.5')}>
-                <SearchIcon className={classnames('w-4', 'h-4', theme.searchAreaText)}/>
+                <SearchIcon className={classnames('w-4', 'h-4', theme.inputs.missionSearch.text)}/>
               </div>
               <div className={classnames('flex-grow', 'ml-2')}>
                 <input
                   type={'text'}
                   placeholder={'Search by Mission Name'}
-                  className={classnames(theme.searchAreaBg, theme.searchAreaText, 'w-full', 'outline-none')}
+                  className={classnames(theme.inputs.missionSearch.bg, theme.inputs.missionSearch.text, 'w-full', 'outline-none')}
                   onChange={debouncedSearchInputHandler}
                 />
               </div>

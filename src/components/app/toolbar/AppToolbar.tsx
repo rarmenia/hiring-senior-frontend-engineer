@@ -9,7 +9,7 @@ import GET_LAUNCHPADS, {Launchpads} from '../../../../apollo/queries/GET_LAUNCHP
 export function AppToolbar(): JSX.Element {
   return (
     <header className={classnames('flex', 'flex-col', 'sticky', 'top-0', 'z-50')}>
-      <div className={classnames('flex', 'flex-row', 'items-center', 'pt-6', configTheme.default.bgMain)}>
+      <div className={classnames('flex', 'flex-row', 'items-center', 'pt-6', configTheme.default.main.bg)}>
         <div>
           <h1 className={classnames('block', 'text-2xl', 'leading-8', 'font-bold')}>SpaceX Mission Dashboard</h1>
         </div>
@@ -24,14 +24,14 @@ export function AppToolbar(): JSX.Element {
                 <SiteSelector options={[
                   {value: undefined, display: 'Launch Site'},
                   ...(data?.launchpads ?? []).map(launchpad => ({display: launchpad.name, value: launchpad.id}))
-                ]} />
+                ]}/>
               )}
             </ApolloResolver>
           </div>
         </div>
       </div>
       <div
-        className={`${classnames('h-6', 'bg-gradient-to-b', configTheme.default.fromBgMainGradient)} min-h-[1.5rem]`}/>
+        className={`${classnames('h-6', 'bg-gradient-to-b', configTheme.default.main.fromGradient)} min-h-[1.5rem]`}/>
     </header>
   );
 }

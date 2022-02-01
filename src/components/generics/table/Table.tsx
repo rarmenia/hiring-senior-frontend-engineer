@@ -33,9 +33,9 @@ export default function Table<T>(props: Props<T>): JSX.Element {
   return (<>
     {
       (props.loading && (!props.data || (props.data?.length <= 0))) ? (
-        <div className={classnames(theme.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
+        <div className={classnames(theme.main.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
           <div className={classnames('w-20', 'h-20')}>
-            <LoadingSpinner />
+            <LoadingSpinner/>
           </div>
         </div>
       ) : (<>
@@ -43,7 +43,7 @@ export default function Table<T>(props: Props<T>): JSX.Element {
           <table className={classnames('table-fixed', 'w-full', 'overflow-scroll')} style={{minWidth: 800}}>
             <thead className={classnames('text-left')}>
             <tr
-              className={classnames('text-sm', 'leading-5', 'font-semibold', theme.tableHeading, theme.borderSlice, 'border-b-4')}>
+              className={classnames('text-sm', 'leading-5', 'font-semibold', theme.table.textHeading, theme.main.slice, 'border-b-4')}>
               {props.colConfig.map(col => (
                 <th
                   key={col.key}
@@ -51,14 +51,14 @@ export default function Table<T>(props: Props<T>): JSX.Element {
                 >
                   {!col.sortKey ? (<span>{col.headerText}</span>) : (
                     <button
-                      className={classnames('text-sm', 'leading-5', 'font-semibold', 'inline-flex', 'items-center', theme.tableHeading)}
+                      className={classnames('text-sm', 'leading-5', 'font-semibold', 'inline-flex', 'items-center', theme.table.textHeading)}
                       onClick={() => handleSortInteraction(col.sortKey)}>
                       <span className={classnames('text-sm', 'font-semibold')}>{col.headerText}</span>
                       <span className={classnames('ml-2', 'mt-1')}>
                         {(props.sortInfo?.sortKey === col.sortKey && props.sortInfo.sortDir === 'asc') ? (
-                          <ArrowUpIcon className={classnames('h-3', 'w-3', theme.tableHeading)}/>
+                          <ArrowUpIcon className={classnames('h-3', 'w-3', theme.table.textHeading)}/>
                         ) : (
-                          <ArrowDownIcon className={classnames('h-3', 'w-3', theme.tableHeading)}/>
+                          <ArrowDownIcon className={classnames('h-3', 'w-3', theme.table.textHeading)}/>
                         )}
                       </span>
                     </button>
@@ -77,7 +77,7 @@ export default function Table<T>(props: Props<T>): JSX.Element {
                   props.colConfig.map((col) => (
                     <td
                       key={col.key}
-                      className={classnames('px-4', 'py-4', theme.borderSlice, {'border-b-4': index + 1 < arr.length}, {[theme.tableData]: !col.dataConditionalStyling}) + ` ${col.dataConditionalStyling ? col.dataConditionalStyling(dataRow): ''}`}
+                      className={classnames('px-4', 'py-4', theme.main.slice, {'border-b-4': index + 1 < arr.length}, {[theme.table.textData]: !col.dataConditionalStyling}) + ` ${col.dataConditionalStyling ? col.dataConditionalStyling(dataRow) : ''}`}
                     >
                       {col.dataAccessor(dataRow)}
                     </td>
@@ -89,7 +89,7 @@ export default function Table<T>(props: Props<T>): JSX.Element {
           </table>
         ) : (
           <div className={classnames('w-full', 'flex', 'flex-row', 'items-center', 'justify-center', 'py-5')}>
-            <div className={classnames(theme.text)}>* No Results Found*</div>
+            <div className={classnames(theme.main.text)}>* No Results Found*</div>
           </div>
         )}
       </>)

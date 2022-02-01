@@ -15,7 +15,7 @@ export function BlindPaginator(props: Props): JSX.Element {
     {(props.actualResultCount === props.expectedResultCount) && (
       <div className={classnames('ml-4')}>
         <button onClick={() => props.onPageChange(props.currentPage + 1)}>
-          <ArrowRightIcon className={classnames(theme.text, 'h-6', 'w-6', 'mt-2')}/>
+          <ArrowRightIcon className={classnames(theme.main.text, 'h-6', 'w-6', 'mt-2')}/>
         </button>
       </div>
     )}
@@ -37,14 +37,14 @@ export function BlindPaginator(props: Props): JSX.Element {
             props.onPageChange(0);
           }
         }}
-        className={theme.text}>
+        className={theme.main.text}>
         1
       </button>
     </div>
     {(props.currentPage - 1) >= 0 && (
       <div className={classnames('mr-4')}>
         <button onClick={() => props.onPageChange(props.currentPage - 1)}>
-          <ArrowLeftIcon className={classnames(theme.text, 'h-6', 'w-6', 'mt-2')}/>
+          <ArrowLeftIcon className={classnames(theme.main.text, 'h-6', 'w-6', 'mt-2')}/>
         </button>
       </div>
     )}

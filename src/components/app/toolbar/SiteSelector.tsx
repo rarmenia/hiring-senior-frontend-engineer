@@ -28,12 +28,13 @@ export default function SiteSelector(props: Props): JSX.Element {
  return (
    <Listbox value={launchSite} onChange={handleChange}>
     <div className="relative mt-1">
-     <Listbox.Button className={classnames('relative', 'w-full', 'py-3', 'pl-4', 'pr-12', 'text-left', 'rounded-lg', 'shadow-sm', 'text-sm', 'focus:outline-none', theme.siteSelectBg, theme.siteSelectText)}>
+     <Listbox.Button
+       className={classnames('relative', 'w-full', 'py-3', 'pl-4', 'pr-12', 'text-left', 'rounded-lg', 'shadow-sm', 'text-sm', 'focus:outline-none', theme.inputs.siteSearch.bg, theme.inputs.siteSearch.text)}>
       <span className="flex truncate">
-       <OfficeBuildingIcon className={classnames('w-4', 'h-4', 'mt-0.5', 'mr-2', theme.siteSelectText)} />
-       {props.options.find(_ => _.value === launchSite)?.display ?? ''}
+       <OfficeBuildingIcon className={classnames('w-4', 'h-4', 'mt-0.5', 'mr-2', theme.inputs.siteSearch.text)}/>
+        {props.options.find(_ => _.value === launchSite)?.display ?? ''}
       </span>
-      <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+       <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <ChevronDownIcon
                 className="w-5 h-5 text-gray-400"
                 aria-hidden="true"
@@ -46,15 +47,16 @@ export default function SiteSelector(props: Props): JSX.Element {
        leaveFrom="opacity-100"
        leaveTo="opacity-0"
      >
-      <Listbox.Options className={classnames('absolute', 'w-full', 'py-1', 'mt-1', 'overflow-auto', 'text-base', 'rounded-md', 'max-h-60', 'focus:outline-none', 'text-sm', theme.siteSelectBg, theme.text)}>
-       {props.options.map((option, optionIndex) => (
-         <Listbox.Option
-           key={optionIndex}
-           className={classnames(theme.text, 'cursor-pointer', 'select-none', 'relative', 'py-2', 'pl-10', 'pr-4', 'text-sm')}
-           value={option.value}
-         >
-           {({selected}) => (
-             <>
+       <Listbox.Options
+         className={classnames('absolute', 'w-full', 'py-1', 'mt-1', 'overflow-auto', 'text-base', 'rounded-md', 'max-h-60', 'focus:outline-none', 'text-sm', theme.inputs.siteSearch.bg, theme.main.text)}>
+         {props.options.map((option, optionIndex) => (
+           <Listbox.Option
+             key={optionIndex}
+             className={classnames(theme.main.text, 'cursor-pointer', 'select-none', 'relative', 'py-2', 'pl-10', 'pr-4', 'text-sm')}
+             value={option.value}
+           >
+             {({selected}) => (
+               <>
                       <span
                         className={classnames({'text-blue-500': selected}, {'font-medium': selected}, {'font-normal': !selected}, 'block', 'truncate')}
                       >
@@ -65,7 +67,7 @@ export default function SiteSelector(props: Props): JSX.Element {
                    className={classnames('absolute', 'inset-y-0', 'left-0', 'flex', 'items-center', 'pl-3')}
                  >
                           <CheckIcon
-                            className={classnames('w-5', 'h-5', {'text-blue-500': selected}, {[theme.text]: !selected})}
+                            className={classnames('w-5', 'h-5', {'text-blue-500': selected}, {[theme.main.text]: !selected})}
                             aria-hidden="true"/>
                         </span>
                ) : null}

@@ -1,5 +1,5 @@
 import {Head, Html, Main, NextScript} from 'next/document';
-import { classnames } from '../../lib/tailwind-classnames';
+import {classnames} from '../../lib/tailwind-classnames';
 import theme from '../config/theme';
 
 // noinspection JSUnusedGlobalSymbols
@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html lang={'en-US'}>
       <Head/>
-      <body className={classnames(theme.bgMain, theme.text, 'px-6')}>
+      <body className={classnames(theme.main.bg, theme.main.text, 'px-6')}>
       <Main/>
       <NextScript/>
       </body>

@@ -35,8 +35,8 @@ export default function NationalityChart(props: Props): JSX.Element {
   const chartConfig = new DonutConfig(200, 200, 20, 5, 0.025, 5);
 
   return (<>
-      {(transformedData && transformedData.length > 0) ? <>
-        <div className={classnames(theme.text)}>
+      {(transformedData && transformedData.length > 0) ? (<>
+        <div className={classnames(theme.main.text)}>
           <DonutChart<NationalityChartData>
             donutConfig={chartConfig}
             colors={colors}
@@ -48,7 +48,9 @@ export default function NationalityChart(props: Props): JSX.Element {
             valueHeaderText={'Count'}
           />
         </div>
-      </> : transformedData.length === 0 ? (<div>No Payloads</div>) : (<div>loading</div>)}
+      </>) : (<div className={classnames('w-full', 'py-4', 'flex', 'flex-row', 'items-center', 'justify-center')}>
+        <div className={theme.main.text}>* No Payloads *</div>
+      </div>)}
     </>
   );
 
