@@ -3,7 +3,7 @@ import {ArchiveIcon, ScaleIcon, UserCircleIcon} from '@heroicons/react/outline';
 import {classnames} from '../../../../lib/tailwind-classnames';
 import {Payload} from '../../../../apollo/queries/GET_PAYLOADS';
 import React from 'react';
-import ResolveLaunchesWithMissionPayloads, {getPayloads} from '../resolve-launches/ResolveLaunchesWithMissionPayloads';
+import ResolvePayloadsFromLaunches from '../resolve-launches/ResolvePayloadsFromLaunches';
 
 export default function DashboardPayloadStats(): JSX.Element {
 
@@ -31,18 +31,18 @@ export default function DashboardPayloadStats(): JSX.Element {
 
   return (
     <div className={classnames('w-full', 'grid', 'grid-cols-1', 'md:grid-cols-3', 'gap-5')}>
-      <ResolveLaunchesWithMissionPayloads launchesVars={{}}>
+      <ResolvePayloadsFromLaunches launchesVars={{}}>
         {({data, loading}) => (<>
           {payloadStats.map(statConfig => (
-              <StatCard
-                key={statConfig.id}
-                loading={loading}
-                statValue={statConfig.statCalc(getPayloads(data))}
-                statText={statConfig.statText}
-                icon={statConfig.icon} unit={statConfig.unit}/>
-            ))}
+            <StatCard
+              key={statConfig.id}
+              loading={loading}
+              statValue={statConfig.statCalc(data)}
+              statText={statConfig.statText}
+              icon={statConfig.icon} unit={statConfig.unit}/>
+          ))}
         </>)}
-      </ResolveLaunchesWithMissionPayloads>
+      </ResolvePayloadsFromLaunches>
 
     </div>
   );

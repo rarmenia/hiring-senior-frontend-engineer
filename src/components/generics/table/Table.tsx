@@ -1,6 +1,7 @@
 import {classnames, TTailwindString} from '../../../../lib/tailwind-classnames';
 import theme from '../../../config/theme';
 import LoadingSpinner from '../resolvers/LoadingSpinner';
+import {ArrowDownIcon, ArrowUpIcon} from '@heroicons/react/outline';
 
 export interface Column<T> {
 
@@ -50,9 +51,16 @@ export default function Table<T>(props: Props<T>): JSX.Element {
                 >
                   {!col.sortKey ? (<span>{col.headerText}</span>) : (
                     <button
-                      className={classnames('text-sm', 'leading-5', 'font-semibold', theme.tableHeading)}
+                      className={classnames('text-sm', 'leading-5', 'font-semibold', 'inline-flex', 'items-center', theme.tableHeading)}
                       onClick={() => handleSortInteraction(col.sortKey)}>
                       <span className={classnames('text-sm', 'font-semibold')}>{col.headerText}</span>
+                      <span className={classnames('ml-2', 'mt-1')}>
+                        {(props.sortInfo?.sortKey === col.sortKey && props.sortInfo.sortDir === 'asc') ? (
+                          <ArrowUpIcon className={classnames('h-3', 'w-3', theme.tableHeading)}/>
+                        ) : (
+                          <ArrowDownIcon className={classnames('h-3', 'w-3', theme.tableHeading)}/>
+                        )}
+                      </span>
                     </button>
                   )}
                 </th>

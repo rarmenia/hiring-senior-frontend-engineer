@@ -2,12 +2,15 @@ import {classnames} from '../../../../lib/tailwind-classnames';
 import TableCard from '../../generics/cards/TableCard';
 import ResolveLaunchesWithMissionPayloads from '../resolve-launches/ResolveLaunchesWithMissionPayloads';
 import theme from '../../../config/theme';
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {LaunchesWithMissions} from '../resolve-launches/ResolveLaunchesWithMissions';
-import Table, {Column} from '../../generics/charts/Table';
+import Table, {Column} from '../../generics/table/Table';
 import {CardSeparator} from '../../generics/cards/CardSeparator';
-import {ArrowLeftIcon, ArrowRightIcon, SearchIcon} from '@heroicons/react/outline';
+import {SearchIcon} from '@heroicons/react/outline';
 import {debounce} from 'lodash';
+import {BlindPaginator} from '../../generics/table/BlindPaginator';
+import {useSelector} from 'react-redux';
+import {AppState} from '../../../redux/store';
 
 interface TableRow {
   missionName: string,
@@ -44,9 +47,15 @@ function composeTableRows(data?: LaunchesWithMissions): TableRow[] {
 
 export default function DashboardTable(): JSX.Element {
 
+
   const [missionSearch, setMissionSearch] = useState<string | undefined | null>(undefined);
   const [sortInfo, setSortInfo] = useState<{ sortKey?: string, sortDir?: 'asc' | 'desc' } | undefined>(undefined);
   const [page, setPage] = useState<number>(0);
+
+  const launchSite = useSelector((state: AppState) => state.launchSite.launchSite);
+
+
+  useEffect(() => setPage(0), [launchSite, setPage]);
 
   const pageSize = 30;
 
@@ -74,13 +83,13 @@ export default function DashboardTable(): JSX.Element {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMissionSearch(event.target.value);
     setPage(0);
-    setSortInfo(undefined)
-  }
+    setSortInfo(undefined);
+  };
 
   const debouncedSearchInputHandler = useMemo(
     () => debounce(handleInput, 500),
     [setMissionSearch, setPage, setSortInfo]
-  )
+  );
 
 
   return (
@@ -118,42 +127,10 @@ export default function DashboardTable(): JSX.Element {
                          sortChange={(change) => setSortInfo(change)}/>
                   <CardSeparator/>
                   <div className={classnames('py-4', 'px-6', 'w-full', 'flex', 'flex-row-reverse', 'items-center')}>
-                    {((data?.launches.length ?? 0) === pageSize) && (
-                      <div className={classnames('ml-4')}>
-                        <button onClick={() => setPage((curPage) => curPage + 1)}>
-                          <ArrowRightIcon className={classnames(theme.text, 'h-6', 'w-6', 'mt-2')}/>
-                        </button>
-                      </div>
-                    )}
-                    {page > 0 && (
-                      <>
-                        <div>
-                          {page + 1}
-                        </div>
-                        <div className={classnames('mx-2')}>
-                          ...
-                        </div>
-
-                      </>
-                    )}
-                    <div>
-                      <button
-                        onClick={() => {
-                          if (page !== 0) {
-                            setPage(0);
-                          }
-                        }}
-                        className={theme.text}>
-                        1
-                      </button>
-                    </div>
-                    {(page - 1) >= 0 && (
-                      <div className={classnames('mr-4')}>
-                        <button onClick={() => setPage((curPage) => curPage - 1)}>
-                          <ArrowLeftIcon className={classnames(theme.text, 'h-6', 'w-6', 'mt-2')}/>
-                        </button>
-                      </div>
-                    )}
+                    <BlindPaginator
+                      currentPage={page} expectedResultCount={pageSize} actualResultCount={data?.launches?.length ?? 0}
+                      onPageChange={setPage}
+                    />
                   </div>
                 </>
               )}
