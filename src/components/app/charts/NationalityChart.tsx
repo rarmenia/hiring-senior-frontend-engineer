@@ -1,10 +1,6 @@
-import {Group} from '@visx/group';
-import {Pie} from '@visx/shape';
-import {Text} from '@visx/text';
 import {classnames} from '../../../../lib/tailwind-classnames';
 import tailwindColors from '../../../../lib/tailwind-default-colors';
 import theme from '../../../config/theme';
-import {useState} from 'react';
 import DonutChart, {DonutConfig} from '../../generics/cards/DonutChart';
 
 
@@ -20,13 +16,14 @@ interface Props {
 
 export default function NationalityChart(props: Props): JSX.Element {
 
-  const [active, setActive] = useState<NationalityChartData | undefined>(undefined)
 
   const transformedData: NationalityChartData[] = Object.entries(props.nationalityData).map(([nationality, count], index) => ({
     nationality,
     count,
     index
   }));
+
+  console.log(transformedData);
 
   const colors = [
     tailwindColors.orange['500'],
@@ -41,21 +38,18 @@ export default function NationalityChart(props: Props): JSX.Element {
 
   return (<>
       {(transformedData && transformedData.length > 0) ? <>
-          <div className={classnames(theme.text)}>
-            <DonutChart<NationalityChartData>
-              donutConfig={chartConfig}
-              colors={colors}
-              data={transformedData}
-              valueAccessor={(value) => (value?.count ?? 0)}
-              indexAccessor={(value) => (value?.index ?? 0)}
-              labelAccessor={(value) => (value?.nationality ?? '')}
-              labelHeaderText={'Nationality'}
-              valueHeaderText={'Count'}
-              handleChangeActive={setActive}
-              displayTable={true}
-              activeInitial={active}
-            />
-          </div>
+        <div className={classnames(theme.text)}>
+          <DonutChart<NationalityChartData>
+            donutConfig={chartConfig}
+            colors={colors}
+            data={transformedData}
+            valueAccessor={(value) => (value?.count ?? 0)}
+            indexAccessor={(value) => (value?.index)}
+            labelAccessor={(value) => (value?.nationality ?? '')}
+            labelHeaderText={'Nationality'}
+            valueHeaderText={'Count'}
+          />
+        </div>
       </> : transformedData.length === 0 ? (<div>No Payloads</div>) : (<div>loading</div>)}
     </>
   );
