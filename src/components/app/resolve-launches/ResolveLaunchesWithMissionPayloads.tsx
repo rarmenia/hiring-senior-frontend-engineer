@@ -10,6 +10,36 @@ interface Props {
   children: (args: {data?: LaunchesWithMissions, loading: boolean}) => JSX.Element;
 }
 
+function resolveData(launches?: LaunchesWithMissions, payloads?: Payloads): LaunchesWithMissions | undefined {
+  if (!(launches && payloads)) return undefined;
+  if (!(launches.launches && payloads.payloads)) return undefined;
+  return {
+    launches: launches.launches.map(launch => ({
+      ...launch,
+      missions: launch.missions?.map(mission => ({
+        ...mission,
+        payloads: payloads.payloads.filter(payload => mission.payloads.map(_ => _?.id ?? '').includes(payload.id)) ?? []
+      })) ?? []
+    }))
+  }
+}
+
+export function getPayloads(launches?: LaunchesWithMissions): Payload[] | undefined {
+  if (!launches) return undefined;
+  return launches.launches.reduce((acc: Payload[], launch) =>
+      [
+        ...acc,
+        ...(launch.missions?.reduce((payloads: Payload[], mission) =>
+            [
+              ...payloads,
+              ...(mission.payloads ?? [])
+            ]
+          ,[]) ?? [])
+      ]
+    ,[]);
+}
+
+
 export default function ResolveLaunchesWithMissionPayloads(props: Props): JSX.Element {
 
   return (
@@ -21,15 +51,7 @@ export default function ResolveLaunchesWithMissionPayloads(props: Props): JSX.El
               {
                 props.children({
                   loading: payloads.loading || launches.loading,
-                  data: !(launches.data && payloads.data) ? undefined : {
-                    launches: launches.data.launches?.map(launch => ({
-                      ...launch,
-                      missions: launch.missions?.map(mission => ({
-                        ...mission,
-                        payloads: payloads.data?.payloads.filter(payload => mission.payloads.map(_ => _?.id ?? '').includes(payload.id)) ?? []
-                      })) ?? []
-                    })) ?? []
-                  }
+                  data: resolveData(launches.data, payloads.data)
                 })
               }
             </>

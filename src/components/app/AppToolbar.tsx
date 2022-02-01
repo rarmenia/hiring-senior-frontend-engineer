@@ -1,6 +1,9 @@
 import * as configTheme from '../../config/theme';
 import {classnames} from '../../../lib/tailwind-classnames';
 import SettingsMenu from './SettingsMenu';
+import SiteSelector from './SiteSelector';
+import ApolloResolver from '../generics/ApolloResolver';
+import GET_LAUNCHPADS, { Launchpads } from '../../../apollo/queries/GET_LAUNCHPADS';
 
 
 export function AppToolbar(): JSX.Element {
@@ -15,7 +18,16 @@ export function AppToolbar(): JSX.Element {
           <div className={classnames('mt-2', 'mr-4', 'p-2', 'rounded-full')}>
             <SettingsMenu/>
           </div>
-          <div className={''}>*launch site filter*</div>
+          <div className={classnames('w-44')}>
+            <ApolloResolver<Launchpads, undefined> query={GET_LAUNCHPADS} vars={undefined}>
+              {({data}) => (
+                <SiteSelector options={[
+                  {value: undefined, display: 'Launch Site'},
+                  ...(data?.launchpads ?? []).map(launchpad => ({display: launchpad.name, value: launchpad.id}))
+                ]} />
+              )}
+            </ApolloResolver>
+          </div>
         </div>
       </div>
       <div

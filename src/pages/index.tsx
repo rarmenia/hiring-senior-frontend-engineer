@@ -15,21 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={classnames('my-4')}>
-      <ResolvePayloadsFromLaunches launchesVars={{}}>
-        {({data, loading}) => (
-          <DashboardPayloadStats loading={loading} data={data?.launches.reduce((acc: Payload[], launch) =>
-            [
-              ...acc,
-              ...(launch.missions?.reduce((payloads: Payload[], mission) =>
-                [
-                  ...payloads,
-                  ...(mission.payloads ?? [])
-                ]
-                ,[]) ?? [])
-            ]
-            ,[]) ?? []} />
-        )}
-      </ResolvePayloadsFromLaunches>
+      <DashboardPayloadStats />
       <DashboardCharts />
       <DashboardTable />
     </div>
