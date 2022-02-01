@@ -1,10 +1,9 @@
-import StatCard from '../generics/cards/StatCard';
+import StatCard from '../../generics/cards/StatCard';
 import {ArchiveIcon, ScaleIcon, UserCircleIcon} from '@heroicons/react/outline';
-import {classnames} from '../../../lib/tailwind-classnames';
-import {Payload} from '../../../apollo/queries/GET_PAYLOADS';
+import {classnames} from '../../../../lib/tailwind-classnames';
+import {Payload} from '../../../../apollo/queries/GET_PAYLOADS';
 import React from 'react';
-import ResolveLaunchesWithMissionPayloads, {getPayloads} from './resolve-launches/ResolveLaunchesWithMissionPayloads';
-import {LaunchesWithMissions} from './resolve-launches/ResolveLaunchesWithMissions';
+import ResolveLaunchesWithMissionPayloads, {getPayloads} from '../resolve-launches/ResolveLaunchesWithMissionPayloads';
 
 export default function DashboardPayloadStats(): JSX.Element {
 

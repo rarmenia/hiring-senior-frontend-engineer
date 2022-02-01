@@ -1,7 +1,7 @@
-import {LaunchesInput, Launch} from '../../../../apollo/queries/GET_LAUNCHES';
+import {Launch, LaunchesInput} from '../../../../apollo/queries/GET_LAUNCHES';
 import GET_MISSIONS, {Mission, Missions} from '../../../../apollo/queries/GET_MISSIONS';
 import ResolveLaunches from './ResolveLaunches';
-import ApolloResolver from '../../generics/ApolloResolver';
+import ApolloResolver from '../../generics/resolvers/ApolloResolver';
 
 export interface LaunchWithMissions extends Launch {
   missions?: Mission[]

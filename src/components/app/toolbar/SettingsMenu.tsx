@@ -1,6 +1,6 @@
 import {Menu, Transition} from '@headlessui/react';
-import {classnames} from '../../../lib/tailwind-classnames';
-import theme from '../../config/theme';
+import {classnames} from '../../../../lib/tailwind-classnames';
+import theme from '../../../config/theme';
 import {CogIcon} from '@heroicons/react/outline';
 import {Fragment} from 'react';
 import MenuItemThemeToggle from './MenuItemThemeToggle';

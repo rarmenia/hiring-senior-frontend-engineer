@@ -1,7 +1,6 @@
-import {classnames, TTailwindString} from '../../../lib/tailwind-classnames';
-import theme from '../../config/theme';
-import ResolveLaunchesWithMissionPayloads from '../app/resolve-launches/ResolveLaunchesWithMissionPayloads';
-import LoadingSpinner from './LoadingSpinner';
+import {classnames, TTailwindString} from '../../../../lib/tailwind-classnames';
+import theme from '../../../config/theme';
+import LoadingSpinner from '../resolvers/LoadingSpinner';
 
 export interface Column<T> {
 

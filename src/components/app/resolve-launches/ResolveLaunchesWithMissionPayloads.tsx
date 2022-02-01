@@ -1,9 +1,7 @@
 import ResolveLaunchesWithMissions, {LaunchesWithMissions} from './ResolveLaunchesWithMissions';
 import {LaunchesInput} from '../../../../apollo/queries/GET_LAUNCHES';
 import GET_PAYLOADS, {Payload, Payloads} from '../../../../apollo/queries/GET_PAYLOADS';
-import ApolloResolver from '../../generics/ApolloResolver';
-import {Simulate} from 'react-dom/test-utils';
-import pause = Simulate.pause;
+import ApolloResolver from '../../generics/resolvers/ApolloResolver';
 
 interface Props {
   launchesVars: LaunchesInput,

@@ -1,11 +1,11 @@
-import {classnames} from '../../../lib/tailwind-classnames';
-import TableCard from '../generics/cards/TableCard';
-import ResolveLaunchesWithMissionPayloads from './resolve-launches/ResolveLaunchesWithMissionPayloads';
-import theme from '../../config/theme';
-import React, {ChangeEvent, useMemo, useState} from 'react';
-import {LaunchesWithMissions} from './resolve-launches/ResolveLaunchesWithMissions';
-import Table, {Column} from '../generics/Table';
-import {CardSeparator} from '../generics/cards/CardSeparator';
+import {classnames} from '../../../../lib/tailwind-classnames';
+import TableCard from '../../generics/cards/TableCard';
+import ResolveLaunchesWithMissionPayloads from '../resolve-launches/ResolveLaunchesWithMissionPayloads';
+import theme from '../../../config/theme';
+import React, {useMemo, useState} from 'react';
+import {LaunchesWithMissions} from '../resolve-launches/ResolveLaunchesWithMissions';
+import Table, {Column} from '../../generics/charts/Table';
+import {CardSeparator} from '../../generics/cards/CardSeparator';
 import {ArrowLeftIcon, ArrowRightIcon, SearchIcon} from '@heroicons/react/outline';
 import {debounce} from 'lodash';
 

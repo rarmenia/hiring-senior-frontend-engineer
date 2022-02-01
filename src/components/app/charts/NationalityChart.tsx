@@ -1,7 +1,7 @@
 import {classnames} from '../../../../lib/tailwind-classnames';
 import tailwindColors from '../../../../lib/tailwind-default-colors';
 import theme from '../../../config/theme';
-import DonutChart, {DonutConfig} from '../../generics/cards/DonutChart';
+import DonutChart, {DonutConfig} from '../../generics/charts/DonutChart';
 
 
 interface NationalityChartData {
@@ -22,8 +22,6 @@ export default function NationalityChart(props: Props): JSX.Element {
     count,
     index
   }));
-
-  console.log(transformedData);
 
   const colors = [
     tailwindColors.orange['500'],

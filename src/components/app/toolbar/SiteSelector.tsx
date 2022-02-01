@@ -1,19 +1,19 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {AppState} from '../../redux/store';
+import {AppState} from '../../../redux/store';
 import {Listbox, Transition} from '@headlessui/react';
-import {CheckIcon, ChevronDownIcon, OfficeBuildingIcon, SelectorIcon} from '@heroicons/react/outline';
-import {setLaunchSite} from '../../redux/launch-site/actions';
-import {Fragment, useEffect} from 'react';
-import {classnames} from '../../../lib/tailwind-classnames';
-import theme from '../../config/theme';
+import {CheckIcon, ChevronDownIcon, OfficeBuildingIcon} from '@heroicons/react/outline';
+import {setLaunchSite} from '../../../redux/launch-site/actions';
+import {Fragment} from 'react';
+import {classnames} from '../../../../lib/tailwind-classnames';
+import theme from '../../../config/theme';
 
 export interface SiteOption {
- display: string;
- value?: string;
+  display: string;
+  value?: string;
 }
 
 interface Props {
- options: SiteOption[];
+  options: SiteOption[];
 }
 
 export default function SiteSelector(props: Props): JSX.Element {
@@ -53,21 +53,23 @@ export default function SiteSelector(props: Props): JSX.Element {
            className={classnames(theme.text, 'cursor-pointer', 'select-none', 'relative', 'py-2', 'pl-10', 'pr-4', 'text-sm')}
            value={option.value}
          >
-          {({ selected, active }) => (
-            <>
+           {({selected}) => (
+             <>
                       <span
                         className={classnames({'text-blue-500': selected}, {'font-medium': selected}, {'font-normal': !selected}, 'block', 'truncate')}
                       >
                         {option.value ? option.display : 'No Site'}
                       </span>
-             {selected ? (
-               <span
-                 className={classnames('absolute', 'inset-y-0', 'left-0', 'flex', 'items-center', 'pl-3')}
-               >
-                          <CheckIcon className={classnames('w-5', 'h-5', {'text-blue-500': selected}, {[theme.text]: !selected})} aria-hidden="true" />
+               {selected ? (
+                 <span
+                   className={classnames('absolute', 'inset-y-0', 'left-0', 'flex', 'items-center', 'pl-3')}
+                 >
+                          <CheckIcon
+                            className={classnames('w-5', 'h-5', {'text-blue-500': selected}, {[theme.text]: !selected})}
+                            aria-hidden="true"/>
                         </span>
-             ) : null}
-            </>
+               ) : null}
+             </>
           )}
          </Listbox.Option>
        ))}

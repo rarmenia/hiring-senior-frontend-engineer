@@ -1,23 +1,19 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next';
 import React from 'react';
 import {classnames} from '../../lib/tailwind-classnames';
-import {DashboardCharts} from '../components/app/DashboardCharts';
-import DashboardPayloadStats from '../components/app/DashboardPayloadStats';
-import ResolvePayloadsFromLaunches from '../components/app/resolve-launches/ResolveLaunchesWithMissionPayloads';
-import {Payload} from '../../apollo/queries/GET_PAYLOADS';
-import DashboardTable from '../components/app/DashboardTable';
-
+import {DashboardCharts} from '../components/app/dashboard/DashboardCharts';
+import DashboardPayloadStats from '../components/app/dashboard/DashboardPayloadStats';
+import DashboardTable from '../components/app/dashboard/DashboardTable';
 
 
 const Home: NextPage = () => {
 
 
-
   return (
     <div className={classnames('my-4')}>
-      <DashboardPayloadStats />
-      <DashboardCharts />
-      <DashboardTable />
+      <DashboardPayloadStats/>
+      <DashboardCharts/>
+      <DashboardTable/>
     </div>
   )
 }

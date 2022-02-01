@@ -1,4 +1,4 @@
-import {classnames} from '../../../lib/tailwind-classnames';
+import {classnames} from '../../../../lib/tailwind-classnames';
 import {Switch} from '@headlessui/react';
 import {useTheme} from 'next-themes';
 

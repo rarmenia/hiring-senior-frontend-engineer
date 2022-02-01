@@ -1,4 +1,4 @@
-import tailwindColors from '../../../lib/tailwind-default-colors';
+import tailwindColors from '../../../../lib/tailwind-default-colors';
 
 export default function LoadingSpinner(): JSX.Element {
   return (

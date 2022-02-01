@@ -1,12 +1,11 @@
-import {classnames} from '../../../lib/tailwind-classnames';
-import ChartCard from '../generics/cards/ChartCard';
+import {classnames} from '../../../../lib/tailwind-classnames';
+import ChartCard from '../../generics/cards/ChartCard';
 import React from 'react';
-import NationalityChart from './charts/NationalityChart';
-import ResolveLaunchesWithMissionPayloads, {getPayloads} from './resolve-launches/ResolveLaunchesWithMissionPayloads';
-import {Payload} from '../../../apollo/queries/GET_PAYLOADS';
-import theme from '../../config/theme';
-import LoadingSpinner from '../generics/LoadingSpinner';
-import TopMissionsChart from './charts/TopMissionsChart';
+import NationalityChart from '../charts/NationalityChart';
+import ResolveLaunchesWithMissionPayloads, {getPayloads} from '../resolve-launches/ResolveLaunchesWithMissionPayloads';
+import theme from '../../../config/theme';
+import LoadingSpinner from '../../generics/resolvers/LoadingSpinner';
+import TopMissionsChart from '../charts/TopMissionsChart';
 
 export function DashboardCharts(): JSX.Element {
 
@@ -16,7 +15,7 @@ export function DashboardCharts(): JSX.Element {
       <ResolveLaunchesWithMissionPayloads launchesVars={{}}>
         {({data, loading}) => (<>
           <ChartCard header={'Payload Count By Nationality'}>
-              <>
+            <>
                 {loading ? (
                   <div className={classnames(theme.text, 'flex', 'flex-row', 'items-center', 'justify-center', 'py-6')}>
                     <div className={classnames('w-20', 'h-20')}>

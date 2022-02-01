@@ -1,9 +1,9 @@
-import * as configTheme from '../../config/theme';
-import {classnames} from '../../../lib/tailwind-classnames';
+import * as configTheme from '../../../config/theme';
+import {classnames} from '../../../../lib/tailwind-classnames';
 import SettingsMenu from './SettingsMenu';
 import SiteSelector from './SiteSelector';
-import ApolloResolver from '../generics/ApolloResolver';
-import GET_LAUNCHPADS, { Launchpads } from '../../../apollo/queries/GET_LAUNCHPADS';
+import ApolloResolver from '../../generics/resolvers/ApolloResolver';
+import GET_LAUNCHPADS, {Launchpads} from '../../../../apollo/queries/GET_LAUNCHPADS';
 
 
 export function AppToolbar(): JSX.Element {

@@ -1,11 +1,11 @@
-import GET_LAUNCHES, {Launch, Launches, LaunchesInput} from '../../../../apollo/queries/GET_LAUNCHES';
-import ApolloResolver from '../../generics/ApolloResolver';
+import GET_LAUNCHES, {Launches, LaunchesInput} from '../../../../apollo/queries/GET_LAUNCHES';
+import ApolloResolver from '../../generics/resolvers/ApolloResolver';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../../redux/store';
 
 interface Props {
   queryVars: LaunchesInput,
-  children: (args: {loading: boolean, data?: Launches}) => JSX.Element
+  children: (args: { loading: boolean, data?: Launches }) => JSX.Element
 }
 
 export default function ResolveLaunches(props: Props) {
