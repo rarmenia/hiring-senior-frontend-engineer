@@ -16,6 +16,7 @@ export default function SettingsMenu(): JSX.Element {
                 className={classnames('p-2', 'rounded-full', {[theme.settings.button.bgInactive]: !open}, {[theme.settings.button.bgActive]: open})}>
                 <CogIcon
                   className={classnames('h-5', {[theme.settings.button.iconInactive]: !open}, {[theme.settings.button.iconActive]: open})}/>
+                <span className={classnames('sr-only')}>Open Settings Menu</span>
               </div>
             );
           }}
