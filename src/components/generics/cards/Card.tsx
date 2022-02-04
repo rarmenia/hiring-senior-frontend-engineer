@@ -1,6 +1,5 @@
-import {TTailwindString} from '../../../../lib/tailwind-classnames';
+import {classnames, TTailwindString} from '../../../../lib/tailwind-classnames';
 import theme from '../../../config/theme';
-import {classnames} from 'tailwindcss-classnames';
 import React from 'react';
 
 interface Props {
